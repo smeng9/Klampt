@@ -223,10 +223,10 @@ function net_sendMessage(value)
    if (network && network.connected())
    {
       network.send(value);
-      console.log("Message sent :", '"'+value+'"');
+      //console.log("Message sent :", '"'+value+'"');
    }
    else
-   console.log("Not connected to remote, so no message sent");
+      console.log("Not connected to remote, so no message sent");
 }
 
 function net_isConnected()
@@ -468,7 +468,7 @@ function kclient_advance(callback)
 
 function _freeRunCallback() {
 	if(freeRun) { 
-    console.log("calling freeRunCallback...");
+    //console.log("calling freeRunCallback...");
 		net_sendMessage("R");
 	}
 }
@@ -553,7 +553,7 @@ function _doConnect()
 
 function _sendCode(code) //send python code back to server
 {
-	console.log("got request to send code!\n");
+	//console.log("got request to send code!\n");
 	net_sendMessage("C"+code);
 	//net_sendMessage("hello world");
 }
@@ -802,7 +802,7 @@ function kclient_rpc(request)
       var rgba=request.rgba;
       var recursive=request.recursive;
                                                  
-      console.log("set_color requested. object: " + object_name + " rgba: " + rgba); 
+      //console.log("set_color requested. object: " + object_name + " rgba: " + rgba); 
       
       var obj = getObject(object_name);
       if(obj == null) {
@@ -870,7 +870,7 @@ function kclient_rpc(request)
       var object_name=request.name;
       var visible=request.value;
                                                  
-      console.log("set_visible requested. object: " + object_name + " visible: " + visible); 
+      //console.log("set_visible requested. object: " + object_name + " visible: " + visible); 
       
       var object = getObject(object_name);
       if(object == null) {
@@ -885,7 +885,7 @@ function kclient_rpc(request)
       var object_name=request.object;
       var prefix=request.prefix_name;
                                                  
-      console.log("add_ghost requested. object: " + object_name + " prefix: " + prefix); 
+      //console.log("add_ghost requested. object: " + object_name + " prefix: " + prefix); 
                                    
       var object = getObject(object_name);
       if(object != null)
@@ -926,7 +926,7 @@ function kclient_rpc(request)
    }
    else if(request.type == "add_text")
    {
-      console.log("RPC to add text!");     
+      //console.log("RPC to add text!");     
       var text2 = document.createElement('div');
       text2.style.position = 'absolute';
       text2.id="_text_overlay_"+request.name;
@@ -948,7 +948,7 @@ function kclient_rpc(request)
    }
    else if(request.type == "add_sphere")
    {
-      console.log("RPC to add sphere!"); 
+      //console.log("RPC to add sphere!"); 
       slices = 20;
       if(request.r < 0.05) slices = 6;
       else if(request.r < 0.2) slices = 12;
@@ -1149,7 +1149,7 @@ function kclient_rpc(request)
 
 function newSceneArrivedCallback(data)
 {   
-	console.log("new scene has arrived!");
+	//console.log("new scene has arrived!");
 
 	var dataJ=JSON.parse(data); 
   if(dataJ == null) {
@@ -1161,7 +1161,7 @@ function newSceneArrivedCallback(data)
 	//need to determine if full scene or just transforms
 	var isFullScene=dataJ.metadata.fullscene;
 
-	console.log("full scene is: " + isFullScene);
+	//console.log("full scene is: " + isFullScene);
 
 	if(isFullScene)
 	{
@@ -1174,14 +1174,14 @@ function newSceneArrivedCallback(data)
 	   for(var i=0;i<sceneArea.children.length; i++) {
 			if(sceneArea.children[i].id.startsWith("_text_overlay_")) {
 				overlayList.push(sceneArea.children[i]);
-				console.log("Removing text item "+sceneArea.children[i].id);
+				//console.log("Removing text item "+sceneArea.children[i].id);
 			}
 		}
 		for (i=0;i<overlayList.length;i++) {
 	     	sceneArea.removeChild(overlayList[i]);
 		}
 	   var t1 = performance.now();
-	   console.log("Call to load scene " + (t1 - t0) + " milliseconds.")
+	   //console.log("Call to load scene " + (t1 - t0) + " milliseconds.")
 	   //scene.traverse ( function (child) {
 	   //  console.log("found: " + child.name);
 	   //});
@@ -1191,7 +1191,7 @@ function newSceneArrivedCallback(data)
 	   var t0 = performance.now();
 	   kclient_set_transforms(dataJ.object);
 	   var t1 = performance.now();
-	   console.log("Call to load tranforms " + (t1 - t0) + " milliseconds.");
+	   //console.log("Call to load tranforms " + (t1 - t0) + " milliseconds.");
 	}
 
 	var t1 = performance.now();
@@ -1210,7 +1210,7 @@ function newSceneArrivedCallback(data)
 	var t2 = performance.now();
 	if(rpc.length > 0)
 	{
-	   console.log("Call to do RPC's " + (t2 - t1) + " milliseconds.")
+	   //console.log("Call to do RPC's " + (t2 - t1) + " milliseconds.")
 	}
 
 	data=null;

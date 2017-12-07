@@ -173,7 +173,7 @@ class EventC:
             rubber_band_max_speed = 0.5
         for i in range(1,sim.world.numRigidObjects()):
             blocker = sim.world.rigidObject(i)
-            told = blocker.getTransform()[1]
+            Told = sim.body(blocker).getTransform()
             Tx = self.initialStates[i]
             period = 5+i*2
             amplitude = 1.2
@@ -200,7 +200,7 @@ class EventC:
             Tnew = (Tnew[0],vectorops.add(Tnew[1],(0,self.rubber_bands[i],0)))
             sim.body(blocker).setTransform(*Tnew)
             #sim.body(blocker).setVelocity([0,0,0],[0,vdelta,0])
-            sim.body(blocker).setVelocity([0,0,0],vectorops.div(vectorops.sub(Tnew[1],told),dt))
+            sim.body(blocker).setVelocity([0,0,0],[0,(Tnew[1][1]-Told[1][1])/dt,0])
     
     def inContact(self,sim):
         """Returns true if the robot touches the environment"""
