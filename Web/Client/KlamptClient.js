@@ -504,14 +504,14 @@ function kclient_animate(animate)
 function kclient_event(event)
 {
   net_sendMessage("E"+event);
-  numRefreshCalls += 1;
+  //numRefreshCalls += 1;
 }
 
 
 function kclient_setitem(item,value)
 {
   net_sendMessage("S"+item+","+JSON.stringify(value));
-  numRefreshCalls += 1
+  //numRefreshCalls += 1
 }
 
 function kclient_getitem(item,onvalue)
@@ -827,6 +827,8 @@ function kclient_rpc(request)
                }
               obj.traverse( function ( child ) { 
               if (typeof child.material !== 'undefined') 
+                 var cshared = (typeof obj.userData.customSharedMaterialSetup) === 'undefined';
+                 if(!cshared) { child.material.dispose(); }
                  child.material=obj.material;
               } );
             }
@@ -1037,6 +1039,7 @@ function kclient_rpc(request)
      {
         if(request.verts.length != obj.geometry.vertices.length*3 || true) {
           //might as well just completely recreate the geometry
+          obj.geometry.dispose();
           var geom = new THREE.Geometry();
           geom.dynamic = true;
            for(var i=0;i<request.verts.length;i+=3) {
@@ -1218,7 +1221,7 @@ function newSceneArrivedCallback(data)
 	rpc=null;
   
   //console.log("finished processing message");
-  numRefreshCalls = Math.max(numRefreshCalls - 1,0)
+  numRefreshCalls = Math.max(numRefreshCalls - 1,0);
   if(refreshCallback) {
     if(numRefreshCalls <= 0) {
       refreshCallback();
