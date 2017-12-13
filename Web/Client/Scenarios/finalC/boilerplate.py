@@ -142,10 +142,13 @@ class EventC:
             goalmin = vectorops.madd(goalcenter,goaldims,-0.5)
             goalmax = vectorops.madd(goalcenter,goaldims,0.5)
             respawn = False
-            if self.ball < self.maxTries:
-                if all(tb[i] > goalmin[i] and tb[i] < goalmax[i] for i in range(3)):
+            if all(tb[i] > goalmin[i] and tb[i] < goalmax[i] for i in range(3)):
+                if self.ball < self.maxTries:
                     print "Event supervisor: Ball",self.ball,"scored, adding 10 points"
                     self.score += 10
+                    respawn = True
+                else:
+                    print "Event supervisor: Out of balls, not scoring any more points"
                     respawn = True
             
             if self.lasttouchtime != None and t > self.lasttouchtime + 3.0:
