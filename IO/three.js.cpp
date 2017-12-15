@@ -344,7 +344,7 @@ void ThreeJSExportTransforms(const Robot& robot,AnyCollection& out)
       //clist = &out["children"];
     //else {
     //  if(!clists[robot.parents[i]])
-  //add children element
+	//add children element
     //clists[robot.parents[i]] = &(*llists[robot.parents[i]])["children"];
     //  clist = clists[robot.parents[i]];
     //}

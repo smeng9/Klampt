@@ -1275,7 +1275,7 @@ parent. ";
 
 %feature("docstring")  RobotModel::getConfig "
 
-Retrieves the current configuration of the robot model. ";
+Retreives the current configuration of the robot model. ";
 
 %feature("docstring")  RobotModel::getVelocity "
 

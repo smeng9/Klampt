@@ -3992,6 +3992,7 @@ void SimRobotController::setCubic(const std::vector<double>& q,const std::vector
   mq->Cut(0);
   mq->AppendCubic(q,v,dt);
 }
+
 void SimRobotController::addLinear(const std::vector<double>& q,double dt)
 {
   if(controller->robot->links.size() != q.size()) {

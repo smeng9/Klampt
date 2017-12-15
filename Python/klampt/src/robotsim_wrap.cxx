@@ -51430,7 +51430,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"RobotModel_getConfig", _wrap_RobotModel_getConfig, METH_VARARGS, (char *)"\n"
 		"RobotModel_getConfig(RobotModel self)\n"
 		"\n"
-		"Retrieves the current configuration of the robot model. \n"
+		"Retreives the current configuration of the robot model. \n"
 		""},
 	 { (char *)"RobotModel_getVelocity", _wrap_RobotModel_getVelocity, METH_VARARGS, (char *)"\n"
 		"RobotModel_getVelocity(RobotModel self)\n"

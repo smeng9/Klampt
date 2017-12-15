@@ -234,7 +234,7 @@ class RobotModel
   const char* getJointType(const char* name);
 
   //kinematic and dynamic properties
-  ///Retrieves the current configuration of the robot model.
+  ///Retreives the current configuration of the robot model.
   void getConfig(std::vector<double>& out);
   ///Retreives the current velocity of the robot model.
   void getVelocity(std::vector<double>& out);
@@ -508,6 +508,7 @@ class WorldModel
   Appearance appearance(int id);
   ///Draws the entire world using OpenGL
   void drawGL();
+
   ///If geometry loading is set to false, then only the kinematics are loaded from
   ///disk, and no geometry / visualization / collision detection structures will be
   ///loaded.  Useful for quick scripts that just use kinematics / dynamics of a robot.

@@ -2188,7 +2188,7 @@ class RobotModel(_object):
         """
         getConfig(RobotModel self)
 
-        Retrieves the current configuration of the robot model. 
+        Retreives the current configuration of the robot model. 
         """
         return _robotsim.RobotModel_getConfig(self)
 
