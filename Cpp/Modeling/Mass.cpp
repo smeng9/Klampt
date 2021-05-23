@@ -3,6 +3,7 @@
 #include <KrisLibrary/meshing/Voxelize.h>
 #include <KrisLibrary/meshing/PointCloud.h>
 #include <KrisLibrary/errors.h>
+DEFINE_LOGGER(Modelling)
 using namespace Meshing;
 using namespace Geometry;
 
@@ -164,6 +165,10 @@ Matrix3 Covariance(const TriMesh& mesh,const Vector3& center,Real surfaceFractio
     A *= surfaceFraction/sumArea;
   }
   if(surfaceFraction != 1) {
+    if(!mesh.IsWatertight()) {
+      LOG4CXX_WARN(GET_LOGGER(Modelling),"Mesh is not watertight, may produce way off inertia matrix")
+      LOG4CXX_WARN(GET_LOGGER(Modelling),"Consider setting surfaceFraction to 1 for non-watertight mesh")
+    }
     Matrix3 A2;
     Vector3 diag(Zero);
     Vector3 offd(Zero);
