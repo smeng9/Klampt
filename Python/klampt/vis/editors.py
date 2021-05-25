@@ -1404,12 +1404,7 @@ try:
     from PyQt5.QtWidgets import *
     _has_qt = True
 except ImportError:
-    try:
-        from PyQt4.QtCore import *
-        from PyQt4.QtGui import *
-        _has_qt = True
-    except ImportError:
-        _has_qt = False
+    _has_qt = False
 
 if _has_qt:
     global _vis_id,_my_dialog_res,_doexit

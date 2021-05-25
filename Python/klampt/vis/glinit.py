@@ -52,62 +52,20 @@ def init(backends=['PyQt','GLUT']):
     #print("glinit TRYING BACKENDS",backends)
     for backend in backends:
         if tried(backend): continue
-        if backend == 'PyQt':
+        if backend == 'PyQt' or backend == 'PyQt5':
             try:
                 from PyQt5 import QtCore
                 from PyQt5 import QtGui
                 from PyQt5 import QtWidgets
                 from .backends.qtbackend import QtBackend
-                _BackendStatus[backend] = 'available'
+                _BackendStatus['PyQt'] = 'available'
                 _BackendStatus['PyQt5'] = 'available'
                 _BackendString = 'PyQt5'
                 _GLBackend = QtBackend()
                 print("***  klampt.vis: using Qt5 as the visualization backend  ***")
                 return _GLBackend
             except ImportError:
-                try:
-                    from PyQt4 import QtCore
-                    from PyQt4 import QtGui
-                    from .backends.qtbackend import QtBackend
-                    _BackendStatus[backend] = 'available'
-                    _BackendStatus['PyQt4'] = 'available'
-                    _BackendString = 'PyQt4'
-                    _GLBackend = QtBackend()
-                    print("***  klampt.vis: using Qt4 as the visualization backend  ***")
-                    return _GLBackend
-                except ImportError:
-                    print('PyQt4/PyQt5 are not available... try running "%s install PyQt5"'%(_PIP_String,))
-                    _BackendStatus[backend] = 'unavailable'
-                    _BackendStatus['PyQt4'] = 'unavailable'
-                    _BackendStatus['PyQt5'] = 'unavailable'
-        elif backend == 'PyQt5':
-            try:
-                from PyQt5 import QtCore
-                from PyQt5 import QtGui
-                from PyQt5 import QtWidgets
-                from .backends.qtbackend import QtBackend
-                _BackendStatus[backend] = 'available'
-                _BackendStatus['PyQt'] = 'available'
-                _BackendString = 'PyQt5'
-                _GLBackend = QtBackend()
-                print("***  klampt.vis: using Qt5 as the visualization backend  ***")
-                return _GLBackend
-            except ImportError:
                 print('PyQt5 is not available... try running "%s install PyQt5"'%(_PIP_String,))
-                _BackendStatus[backend] = 'unavailable'
-        elif backend == 'PyQt4':
-            try:
-                from PyQt4 import QtCore
-                from PyQt4 import QtGui
-                from .backends.qtbackend import QtBackend
-                _BackendStatus[backend] = 'available'
-                _BackendStatus['PyQt4'] = 'available'
-                _BackendString = 'PyQt4'
-                _GLBackend = QtBackend()
-                print("***  klampt.vis: using Qt4 as the visualization backend  ***")
-                return _GLBackend
-            except ImportError:
-                print('PyQt4 is not available... try running "%s install PyQt4"'%(_PIP_String,))
                 _BackendStatus[backend] = 'unavailable'
         elif backend == 'GLUT':
             try:

@@ -9,12 +9,8 @@ import threading
 if not glinit.available('PyQt'):
     raise ImportError("Can't import vis_qt without first calling glinit.init() or vis.init()")
 
-if glinit.available('PyQt5'):
-    from PyQt5.QtCore import *
-    from PyQt5.QtWidgets import *
-else:
-    from PyQt4.QtGui import *
-    from PyQt4.QtCore import *
+from PyQt5.QtCore import *
+from PyQt5.QtWidgets import *
 
 
 class MyQThread(QThread):

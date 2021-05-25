@@ -619,7 +619,7 @@ def init(backends=None):
     set:
 
     - 'PyQt': uses PyQT + OpenGL
-    - 'PyQt4' / 'PyQt5': uses a specific version of PyQT
+    - 'PyQt5': uses a specific version of PyQT
     - 'GLUT': uses GLUT + OpenGL
     - 'IPython': uses an IPython widget
     - 'HTML': outputs an HTML / Javascript widget
@@ -648,7 +648,7 @@ def init(backends=None):
         _window_manager = None
         _backend = None
     
-    OpenGLBackends = ['PyQt','PyQt4','PyQt5','GLUT']
+    OpenGLBackends = ['PyQt','PyQt5','GLUT']
     order = [[]]
     for backend in backends:
         if backend in ['IPython','HTML']:

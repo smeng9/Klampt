@@ -1,14 +1,10 @@
 from OpenGL.GL import *
-try:
-    from PyQt5 import QtGui
-    from PyQt5.QtCore import *
-    from PyQt5.QtWidgets import *
-    from PyQt5.QtOpenGL import *
-except ImportError:
-    from PyQt4 import QtGui
-    from PyQt4.QtCore import *
-    from PyQt4.QtGui import *
-    from PyQt4.QtOpenGL import *
+
+from PyQt5 import QtGui
+from PyQt5.QtCore import *
+from PyQt5.QtWidgets import *
+from PyQt5.QtOpenGL import *
+
 import sys
 import math
 import weakref
